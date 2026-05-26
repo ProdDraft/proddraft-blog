@@ -3,7 +3,7 @@ title: "How to read an AI paper (and actually understand it)"
 description: "A practical framework for extracting signal from arXiv noise — tools, heuristics, and how to avoid cargo-cult comprehension."
 date: 2026-05-25
 tags: [ai, research, reading]
-draft: true
+draft: false
 ---
 
 *This is a draft. The real first post goes here.*
