@@ -1,0 +1,59 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogType?: string;
+}
+
+const { title, description, ogType } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title ? `${title} — ProdDraft` : 'ProdDraft — Production-grade developer tooling'}</title>
+    <meta name="description" content={description || 'Production-grade developer tooling and a tech blog worth reading. AI, systems, and the craft of building software.'} />
+    <meta property="og:title" content={title || 'ProdDraft'} />
+    <meta property="og:description" content={description || 'Production-grade developer tooling and a tech blog worth reading.'} />
+    <meta property="og:type" content={ogType || 'website'} />
+    <meta property="og:url" content={Astro.url} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a href="/" class="logo">ProdDraft</a>
+        <nav>
+          <a href="/blog">Blog</a>
+          <a href="/products">Products</a>
+          <a href="/about">About</a>
+          <a href="/subscribe" class="nav-cta">Subscribe</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div>
+          <span class="footer-brand">ProdDraft</span>
+          <span class="footer-tagline">Production-grade developer tooling</span>
+        </div>
+        <div class="footer-links">
+          <a href="/blog">Blog</a>
+          <a href="/products">Products</a>
+          <a href="/subscribe">Subscribe</a>
+          <a href="/rss.xml">RSS</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,23 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Products" description="Production-grade developer tooling and starter kits.">
+  <div class="page-header">
+    <h1>Products</h1>
+    <p>Starter kits built for engineers who want CI, structured logging, and proper project structure from commit one.</p>
+  </div>
+
+  <div class="product-card">
+    <h3>FastAPI Pro Starter <span class="price">— $29</span></h3>
+    <p>Async SQLAlchemy 2.0, Alembic migrations, structlog, Docker Compose (Postgres + Redis), GitHub Actions CI, rate limiting, health checks — the scaffold that ships with everything.</p>
+    <p><strong>Includes:</strong> Full source, Docker config, CI pipeline, migrations, 7 tests, README.</p>
+    <a href="https://proddraft.gumroad.com/l/remlbn" class="btn">Get it on Gumroad →</a>
+  </div>
+
+  <div class="product-card">
+    <h3>Coming next</h3>
+    <p>Next.js full-stack starter, Go microservice template, Terraform AWS module pack. Building these publicly — <a href="/subscribe">subscribe</a> to follow along and get launch discounts.</p>
+    <a href="/subscribe" class="btn btn-secondary">Get notified →</a>
+  </div>
+</Base>

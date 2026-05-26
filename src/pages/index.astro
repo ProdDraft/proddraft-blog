@@ -1,0 +1,56 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base>
+  <section class="hero" style="margin-bottom: 3rem;">
+    <h1 style="font-size: 2.8rem; margin-bottom: 1rem;">
+      Production-grade<br />developer tooling
+    </h1>
+    <p style="font-size: 1.2rem; max-width: 560px;">
+      ProdDraft builds code foundations for engineers who want to skip the boilerplate
+      without inheriting someone's bad decisions. Plus a tech blog worth reading.
+    </p>
+    <div style="margin-top: 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+      <a href="/products" class="btn">Browse products</a>
+      <a href="/blog" class="btn btn-secondary">Read the blog</a>
+    </div>
+  </section>
+
+  <section style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 3rem;">
+    <div class="product-card">
+      <h3>FastAPI Pro Starter</h3>
+      <p>A FastAPI scaffold that ships with CI, structured logging, and Docker — not excuses.</p>
+      <div class="price">$29</div>
+      <a href="https://proddraft.gumroad.com/l/remlbn" class="btn" style="margin-top: 0.75rem;">Get it on Gumroad</a>
+    </div>
+    <div class="product-card">
+      <h3>More coming</h3>
+      <p>Next.js, Go services, Terraform modules — in the pipeline.</p>
+      <div class="price">&nbsp;</div>
+      <a href="/subscribe" class="btn btn-secondary" style="margin-top: 0.75rem;">Get notified</a>
+    </div>
+  </section>
+
+  <section>
+    <h2>From the blog</h2>
+    <ul class="blog-list">
+      <li class="blog-list-item">
+        <h2><a href="/blog/how-to-read-an-ai-paper">How to read an AI paper (and actually understand it)</a></h2>
+        <div class="meta">Coming soon</div>
+        <p>A practical framework for extracting signal from arXiv noise — tools, heuristics, and how to avoid cargo-cult comprehension.</p>
+      </li>
+    </ul>
+    <div style="margin-top: 1.5rem;">
+      <a href="/blog" class="btn btn-secondary">All posts →</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  @media (max-width: 600px) {
+    section[style*="grid-template-columns"] {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

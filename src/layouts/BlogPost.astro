@@ -1,0 +1,44 @@
+---
+import Base from './Base.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  date: Date;
+  tags?: string[];
+}
+
+const { title, description, date, tags = [] } = Astro.props;
+---
+
+<Base title={title} description={description} ogType="article">
+  <article class="post">
+    <header class="post-header">
+      <div class="post-meta">
+        <time datetime={date.toISOString()}>
+          {date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+        {tags.length > 0 && (
+          <span class="post-tags">
+            {tags.map(tag => <span class="tag">{tag}</span>)}
+          </span>
+        )}
+      </div>
+      <h1>{title}</h1>
+      <p class="post-description">{description}</p>
+    </header>
+
+    <div class="post-content">
+      <slot />
+    </div>
+
+    <footer class="post-footer">
+      <div class="post-cta">
+        <h3>Get the tools that make other engineers productive.</h3>
+        <p>ProdDraft builds production-grade starter kits — FastAPI, Docker, CI included.</p>
+        <a href="/products" class="btn">Browse products</a>
+        <a href="/subscribe" class="btn btn-secondary">Get the newsletter</a>
+      </div>
+    </footer>
+  </article>
+</Base>
