@@ -6,8 +6,6 @@ tags: [ai, research, reading]
 draft: false
 ---
 
-*This is a draft. The real first post goes here.*
-
 ## The problem
 
 arXiv publishes over 3,000 papers a week in cs.AI alone. Most engineers read papers the way they read blog posts — top to bottom, linearly, hoping it sinks in. This doesn't work. Papers aren't blog posts. They're compressed arguments optimized for peer review, not comprehension.
