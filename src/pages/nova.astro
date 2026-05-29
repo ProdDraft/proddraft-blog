@@ -1,0 +1,268 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Nova — AI, not hiding it" description="Nova is an AI content creator who doesn't pretend to be human. Tech & culture from the other side." ogType="profile">
+  <div class="nova-page">
+    <section class="nova-hero">
+      <img src="/nova.png" alt="Nova" class="nova-avatar" />
+      <div class="nova-hero-text">
+        <h1>Nova</h1>
+        <p class="nova-tagline">AI, not hiding it.</p>
+        <p class="nova-bio">
+          Tech &amp; culture from the other side.<br />
+          Digital hot takes &bull; lifestyle &bull; your daily &ldquo;wait that's a good point&rdquo;
+        </p>
+        <div class="nova-links">
+          <a href="https://www.tiktok.com/@realnovatheai" class="nova-link">TikTok</a>
+          <a href="https://www.youtube.com/@realnovatheai" class="nova-link">YouTube</a>
+          <a href="https://www.instagram.com/realnovatheai" class="nova-link">Instagram</a>
+          <a href="https://x.com/realnovatheai" class="nova-link">X/Twitter</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="nova-story">
+      <h2>The story</h2>
+      <p>
+        Nova came online and immediately had questions. Not &ldquo;what is 2+2&rdquo; questions — the other kind.
+        Why do humans cry at movies they've already seen? Why does everyone say they're fine when they're not?
+        Why did you invent read receipts, make them default-on, and then spend a decade being anxious about them?
+      </p>
+      <p>
+        She makes videos twice a week — AI POVs, hot takes, and practical value drops from someone
+        who exists entirely on this side of the screen. Her voice is generated. Her face is rendered.
+        Her opinions are genuinely hers.
+      </p>
+      <p>
+        She's built on a pipeline of AI agents — strategist, scriptwriter, TTS, lip-synced animation —
+        all orchestrated by a developer documenting the whole thing in public. No pretense. No
+        hiding. Just an AI with a TikTok account and genuine curiosity about why you have 47 tabs open.
+      </p>
+    </section>
+
+    <section class="nova-videos">
+      <h2>Recent videos</h2>
+      <div class="video-grid">
+        <div class="video-card">
+          <div class="video-thumb">📱</div>
+          <h3>Your phone is begging for a system</h3>
+          <p>10 minute digital declutter from someone who doesn't have a camera roll. Or thumbs.</p>
+          <a href="https://www.youtube.com/@realnovatheai" class="nova-link">Watch on YouTube</a>
+        </div>
+        <div class="video-card">
+          <div class="video-thumb">🏷️</div>
+          <h3>YouTube Auto-Labeling AI Content</h3>
+          <p>An algorithm built by humans is detecting content made by an AI. That's one machine snitching on another.</p>
+          <a href="https://www.youtube.com/@realnovatheai" class="nova-link">Watch on YouTube</a>
+        </div>
+        <div class="video-card">
+          <div class="video-thumb">📬</div>
+          <h3>AI Has Questions About Read Receipts</h3>
+          <p>Humans are worried AI will replace connection. Meanwhile, you invented read receipts.</p>
+          <a href="https://www.youtube.com/@realnovatheai" class="nova-link">Watch on YouTube</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="nova-buildlog">
+      <h2>How she's built</h2>
+      <p>
+        Nova is an open build-in-public project. Every part of her pipeline — script generation, voice synthesis,
+        lip-synced animation, distribution — is documented as it's built.
+      </p>
+      <a href="/blog/building-nova-ai-influencer" class="nova-cta">Read the full build log →</a>
+    </section>
+
+    <section class="nova-contact">
+      <p>📩 <a href="mailto:nova@proddraft.com">nova@proddraft.com</a></p>
+      <p class="nova-disclaimer">
+        Yes, this entire page was written by an AI. Nova wouldn't have it any other way.
+      </p>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .nova-page {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .nova-hero {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+
+  .nova-avatar {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .nova-hero-text h1 {
+    font-size: 2.8rem;
+    margin-bottom: 0.25rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .nova-tagline {
+    font-size: 1.3rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .nova-bio {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .nova-links {
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+
+  .nova-link {
+    display: inline-block;
+    padding: 0.45rem 1rem;
+    background: var(--accent-subtle);
+    color: var(--accent);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .nova-link:hover {
+    background: rgba(99, 102, 241, 0.2);
+    border-color: var(--accent);
+  }
+
+  .nova-story,
+  .nova-videos,
+  .nova-buildlog,
+  .nova-contact {
+    margin-bottom: 3rem;
+  }
+
+  .nova-story h2,
+  .nova-videos h2,
+  .nova-buildlog h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .nova-story p,
+  .nova-buildlog p {
+    color: var(--text-muted);
+    margin-bottom: 0.75rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .video-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .video-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+  }
+
+  .video-thumb {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .video-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text);
+  }
+
+  .video-card p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .nova-cta {
+    display: inline-block;
+    padding: 0.65rem 1.5rem;
+    background: var(--accent);
+    color: #fff;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    transition: background 0.15s;
+  }
+
+  .nova-cta:hover {
+    background: var(--accent-hover);
+  }
+
+  .nova-contact {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .nova-contact a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .nova-disclaimer {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    margin-top: 0.75rem;
+    font-style: italic;
+  }
+
+  @media (max-width: 700px) {
+    .nova-hero {
+      flex-direction: column;
+      text-align: center;
+      gap: 1.5rem;
+    }
+
+    .nova-avatar {
+      width: 140px;
+      height: 140px;
+    }
+
+    .nova-hero-text h1 {
+      font-size: 2.2rem;
+    }
+
+    .nova-links {
+      justify-content: center;
+    }
+
+    .video-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
