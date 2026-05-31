@@ -2,153 +2,273 @@
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 
-const latestPosts = (await getCollection('blog'))
+const allPosts = (await getCollection('blog'))
   .filter(p => !p.data.draft)
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 2);
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const featured = allPosts.slice(0, 1);
+const recent = allPosts.slice(1, 3);
 ---
 
 <Base>
-  <!-- ── HERO — atmospheric with glowing orb ── -->
+  <!-- ══════════════════════════════════════════
+       HERO — two column, text + visual orb cluster
+       ══════════════════════════════════════════ -->
   <section class="hero">
-    <!-- Atmospheric orbs -->
-    <div class="hero-orb hero-orb-main"></div>
-    <div class="hero-orb hero-orb-secondary"></div>
+    <div class="hero-orb-main"></div>
+    <div class="hero-orb-secondary"></div>
 
-    <div class="hero-inner">
-      <div class="hero-badge">Production-grade developer tooling</div>
-      <h1 class="hero-headline">
-        Skip the boilerplate.<br />Ship the thing.
-      </h1>
-      <p class="hero-lede">
-        ProdDraft builds code foundations that ship with CI, structured logging,
-        and Docker — not placeholder comments. Plus a tech blog that respects your
-        attention span.
-      </p>
-      <div class="hero-actions">
-        <a href="/products" class="btn btn-primary">Browse products</a>
-        <a href="/blog" class="btn">Read the blog</a>
+    <div class="hero-grid">
+      <!-- Left: text -->
+      <div class="hero-text">
+        <div class="hero-badge">Production-grade developer tooling</div>
+        <h1 class="hero-headline">Skip the boilerplate.<br />Ship the thing.</h1>
+        <p class="hero-lede">
+          ProdDraft builds code foundations that ship with CI, structured logging,
+          and Docker — not placeholder comments. Plus a tech blog that respects your
+          attention span.
+        </p>
+        <div class="hero-actions">
+          <a href="/products" class="btn btn-primary">Browse products</a>
+          <a href="/blog" class="btn">Read the blog</a>
+        </div>
       </div>
 
-      <!-- Trust / feature pills -->
-      <div class="hero-pills">
-        <span class="pill">FastAPI</span>
-        <span class="pill">Docker</span>
-        <span class="pill">CI/CD</span>
-        <span class="pill">AI Research</span>
-        <span class="pill">Open Source</span>
-        <span class="pill">No Fluff</span>
+      <!-- Right: visual cluster -->
+      <div class="hero-visual">
+        <div class="hero-node-cluster">
+          <div class="node node-lg">FastAPI</div>
+          <div class="node node-md" style="top: 10%; left: 55%;">Docker</div>
+          <div class="node node-sm" style="top: 30%; left: 75%;">CI/CD</div>
+          <div class="node node-md" style="top: 55%; left: 60%;">AI</div>
+          <div class="node node-sm" style="top: 70%; left: 35%;">OSS</div>
+          <div class="node node-lg" style="top: 45%; left: 15%;">Prod</div>
+          <!-- Connection lines drawn via CSS pseudo elements wouldn't work easily,
+               using a simplified SVG grid instead -->
+          <svg class="hero-lines" viewBox="0 0 300 300" preserveAspectRatio="none">
+            <line x1="50" y1="50" x2="180" y2="80" stroke="rgba(34,211,238,0.15)" stroke-width="1" />
+            <line x1="180" y1="80" x2="240" y2="140" stroke="rgba(34,211,238,0.12)" stroke-width="1" />
+            <line x1="240" y1="140" x2="200" y2="200" stroke="rgba(34,211,238,0.15)" stroke-width="1" />
+            <line x1="200" y1="200" x2="120" y2="230" stroke="rgba(34,211,238,0.10)" stroke-width="1" />
+            <line x1="120" y1="230" x2="50" y2="180" stroke="rgba(34,211,238,0.12)" stroke-width="1" />
+            <line x1="50" y1="180" x2="50" y2="50" stroke="rgba(34,211,238,0.10)" stroke-width="1" />
+            <line x1="180" y1="80" x2="200" y2="200" stroke="rgba(34,211,238,0.08)" stroke-width="1" />
+            <line x1="50" y1="50" x2="240" y2="140" stroke="rgba(168,85,247,0.08)" stroke-width="1" />
+          </svg>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ── PRODUCTS — glass card grid ── -->
+  <!-- ══════════════════════════════════════════
+       STATS BAR — quick credibility
+       ══════════════════════════════════════════ -->
+  <section class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat">
+        <span class="stat-number">3</span>
+        <span class="stat-label">Products</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-number">{allPosts.length}</span>
+        <span class="stat-label">Deep dives</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-number">$19+</span>
+        <span class="stat-label">Starting price</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-number">OSS</span>
+        <span class="stat-label">Compatible</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       PRODUCTS — asymmetric grid: 1 large + 2 small
+       ══════════════════════════════════════════ -->
   <section class="section">
     <div class="section-inner">
       <div class="section-eyebrow">Products</div>
-      <h2 class="section-title">Starter kits, not starter headaches</h2>
-      <div class="card-grid">
-        <article class="card-glass">
+      <div class="section-header-row">
+        <h2 class="section-title">Starter kits, not<br />starter headaches</h2>
+        <p class="section-desc">Every scaffold ships with CI, Docker, and structured logging. No "add auth later" energy — just clean code that works at 2am.</p>
+      </div>
+
+      <div class="products-layout">
+        <!-- Featured: FastAPI (larger) -->
+        <article class="card-glass card-featured">
           <div class="card-badge">Popular</div>
-          <h3 class="card-title">FastAPI Pro Starter</h3>
-          <p class="card-desc">Async SQLAlchemy, Alembic, structlog, Docker Compose, GitHub Actions CI — the scaffold that ships with everything.</p>
+          <h3 class="card-title-lg">FastAPI Pro Starter</h3>
+          <p class="card-desc">Async SQLAlchemy 2.0, Alembic migrations, structlog, Docker Compose (Postgres + Redis), GitHub Actions CI, rate limiting, health checks. Seven tests, full README, zero regrets.</p>
+          <div class="card-features">
+            <span class="feature-tag">Docker</span>
+            <span class="feature-tag">Postgres</span>
+            <span class="feature-tag">Redis</span>
+            <span class="feature-tag">CI/CD</span>
+          </div>
           <div class="card-footer">
             <span class="card-price">$29</span>
-            <a href="https://proddraft.gumroad.com/l/remlbn" class="btn btn-primary card-btn">Get it →</a>
+            <a href="https://proddraft.gumroad.com/l/remlbn" class="btn btn-primary">Get it on Gumroad →</a>
           </div>
         </article>
+
+        <!-- Secondary: Nova Blueprint -->
         <article class="card-glass">
           <h3 class="card-title">Nova Blueprint</h3>
-          <p class="card-desc">The exact playbook behind @realnovatheai — pipeline setup, script system, distribution strategy, real launch analytics.</p>
+          <p class="card-desc">The exact playbook behind @realnovatheai. Pipeline setup, script system, distribution strategy, real launch analytics.</p>
           <div class="card-footer">
             <span class="card-price">$19</span>
-            <a href="/nova-blueprint" class="btn btn-primary card-btn">Learn more →</a>
+            <a href="/nova-blueprint" class="btn btn-primary">Learn more →</a>
           </div>
         </article>
+
+        <!-- Coming soon -->
         <article class="card-glass card-glass-outline">
           <h3 class="card-title">Coming next</h3>
-          <p class="card-desc">Next.js full-stack, Go microservices, Terraform modules — building in public. Subscribe for launch discounts.</p>
+          <p class="card-desc">Next.js, Go services, Terraform modules — building in public.</p>
           <div class="card-footer">
             <span class="card-price">&nbsp;</span>
-            <a href="/subscribe" class="btn card-btn">Get notified →</a>
+            <a href="/subscribe" class="btn">Get notified →</a>
           </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- ── BLOG ── -->
-  <section class="section">
+  <!-- ══════════════════════════════════════════
+       BLOG — two column featured + list
+       ══════════════════════════════════════════ -->
+  <section class="section section-alt">
     <div class="section-inner">
       <div class="section-eyebrow">Blog</div>
-      <h2 class="section-title">Writing worth your attention</h2>
-      {latestPosts.length === 0 ? (
+      <div class="section-header-row">
+        <h2 class="section-title">Writing worth<br />your attention</h2>
+        <p class="section-desc">AI research, new tech, and the craft of building software. No listicles, no hype — just substance from someone shipping in public.</p>
+      </div>
+
+      {featured.length === 0 ? (
         <p class="empty-state">First post incoming. <a href="/subscribe">Subscribe</a> to get it.</p>
       ) : (
-        <ul class="blog-list">
-          {latestPosts.map(post => (
-            <li class="blog-list-item">
+        <div class="blog-layout">
+          <!-- Featured post — large card -->
+          {featured.map(post => (
+            <article class="blog-featured glass">
+              <div class="blog-featured-tag">Latest</div>
+              <time datetime={post.data.date.toISOString()} class="blog-featured-date">
+                {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>
               <h2><a href={`/blog/${post.slug}`}>{post.data.title}</a></h2>
-              <div class="meta">
-                <time datetime={post.data.date.toISOString()}>
-                  {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-                </time>
-              </div>
               <p>{post.data.description}</p>
-            </li>
+              <a href={`/blog/${post.slug}`} class="btn btn-primary">Read the post →</a>
+            </article>
           ))}
-        </ul>
+
+          <!-- Recent posts — stacked list -->
+          {recent.length > 0 && (
+            <div class="blog-recent">
+              <h3 class="blog-recent-label">Recent</h3>
+              <ul class="blog-list">
+                {recent.map(post => (
+                  <li class="blog-list-item">
+                    <h3><a href={`/blog/${post.slug}`}>{post.data.title}</a></h3>
+                    <div class="meta">
+                      <time datetime={post.data.date.toISOString()}>
+                        {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                      </time>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+              <a href="/blog" class="btn" style="margin-top: var(--space-lg);">All posts →</a>
+            </div>
+          )}
+        </div>
       )}
-      <div class="section-footer">
-        <a href="/blog" class="btn">All posts →</a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+       NEWSLETTER
+       ══════════════════════════════════════════ -->
+  <section class="section">
+    <div class="section-inner">
+      <div class="newsletter-glass glass">
+        <div class="newsletter-orb"></div>
+        <div class="newsletter-content">
+          <h2 class="newsletter-title">Get the good stuff</h2>
+          <p class="newsletter-desc">One email when there's something worth saying. AI research, tool reviews, and what's shipping at ProdDraft. No spam, no daily cadence.</p>
+          <form
+            action="https://buttondown.com/api/emails/embed-subscribe/proddraft"
+            method="post"
+            target="popupwindow"
+            onsubmit="window.open('https://buttondown.com/proddraft', 'popupwindow')"
+            class="newsletter-form"
+          >
+            <input type="email" name="email" placeholder="you@example.com" required />
+            <input type="hidden" value="1" name="embed" />
+            <button type="submit" class="btn btn-primary">Subscribe</button>
+          </form>
+        </div>
       </div>
     </div>
   </section>
 </Base>
 
 <style>
-  /* ── Hero ────────────────────────────────── */
+  /* ════════════════════════════════════════════
+     HERO — two column
+     ════════════════════════════════════════════ */
 
   .hero {
     position: relative;
-    padding: var(--space-4xl) var(--space-xl) var(--space-3xl);
+    padding: var(--space-4xl) var(--space-xl);
     overflow: hidden;
-    min-height: 70vh;
-    display: flex;
-    align-items: center;
     border-bottom: 1px solid var(--glass-border);
   }
 
-  /* Glowing orbs */
-  .hero-orb {
+  .hero-orb-main {
     position: absolute;
+    width: 700px;
+    height: 700px;
     border-radius: 50%;
-    filter: blur(100px);
+    filter: blur(120px);
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.15), transparent 70%);
+    top: -250px;
+    right: -200px;
     pointer-events: none;
     z-index: 0;
   }
 
-  .hero-orb-main {
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 70%);
-    top: -200px;
-    right: -100px;
-  }
-
   .hero-orb-secondary {
+    position: absolute;
     width: 400px;
     height: 400px;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.10), transparent 70%);
-    bottom: -150px;
-    left: -50px;
+    border-radius: 50%;
+    filter: blur(100px);
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.08), transparent 70%);
+    bottom: -100px;
+    left: -80px;
+    pointer-events: none;
+    z-index: 0;
   }
 
-  .hero-inner {
+  .hero-grid {
     max-width: var(--max-width-wide);
     margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
     position: relative;
     z-index: 1;
+  }
+
+  .hero-text {
+    max-width: 540px;
   }
 
   .hero-badge {
@@ -165,18 +285,16 @@ const latestPosts = (await getCollection('blog'))
   }
 
   .hero-headline {
-    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
     font-weight: 700;
-    line-height: 1.0;
+    line-height: 0.95;
     letter-spacing: -0.04em;
     margin-bottom: var(--space-lg);
-    max-width: 800px;
   }
 
   .hero-lede {
     font-size: var(--text-lg);
     color: var(--text-muted);
-    max-width: 560px;
     line-height: 1.6;
     margin-bottom: var(--space-2xl);
   }
@@ -185,19 +303,133 @@ const latestPosts = (await getCollection('blog'))
     display: flex;
     gap: var(--space-md);
     flex-wrap: wrap;
-    margin-bottom: var(--space-3xl);
   }
 
-  .hero-pills {
+  /* Right visual — node cluster */
+
+  .hero-visual {
+    position: relative;
+    height: 340px;
     display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-sm);
+    align-items: center;
+    justify-content: center;
   }
 
-  /* ── Sections ────────────────────────────── */
+  .hero-node-cluster {
+    position: relative;
+    width: 300px;
+    height: 300px;
+  }
+
+  .hero-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .node {
+    position: absolute;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--text);
+    background: var(--glass-strong);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border-strong);
+    border-radius: var(--radius-full);
+    padding: 0.4rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.08);
+    transition: box-shadow var(--transition), border-color var(--transition);
+    z-index: 2;
+  }
+
+  .node:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 32px var(--accent-glow);
+  }
+
+  .node-lg {
+    font-size: 0.9rem;
+    padding: 0.55rem 1.3rem;
+  }
+
+  .node-md {
+    font-size: 0.78rem;
+    padding: 0.4rem 1rem;
+  }
+
+  .node-sm {
+    font-size: 0.7rem;
+    padding: 0.3rem 0.8rem;
+  }
+
+  /* Default positions — overridden by inline styles */
+  .node:nth-child(1) { top: 5%; left: 5%; }
+  .node:nth-child(2) { top: 10%; left: 55%; }
+  .node:nth-child(3) { top: 30%; left: 75%; }
+  .node:nth-child(4) { top: 55%; left: 60%; }
+  .node:nth-child(5) { top: 70%; left: 35%; }
+  .node:nth-child(6) { top: 45%; left: 15%; }
+
+  /* ════════════════════════════════════════════
+     STATS BAR
+     ════════════════════════════════════════════ */
+
+  .stats-bar {
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  .stats-inner {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: var(--space-3xl);
+    padding: var(--space-xl) var(--space-xl);
+  }
+
+  .stat {
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+
+  .stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .stat-divider {
+    width: 1px;
+    background: var(--glass-border);
+    align-self: stretch;
+    margin: var(--space-sm) 0;
+  }
+
+  /* ════════════════════════════════════════════
+     SECTIONS
+     ════════════════════════════════════════════ */
 
   .section {
     padding: var(--space-4xl) var(--space-xl);
+  }
+
+  .section-alt {
+    background: rgba(255, 255, 255, 0.01);
   }
 
   .section-inner {
@@ -214,24 +446,43 @@ const latestPosts = (await getCollection('blog'))
     margin-bottom: var(--space-sm);
   }
 
+  .section-header-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
+    margin-bottom: var(--space-2xl);
+  }
+
   .section-title {
     font-size: var(--text-4xl);
     font-weight: 700;
     letter-spacing: -0.03em;
-    margin: 0 0 var(--space-2xl);
-    line-height: 1.1;
+    margin: 0;
+    line-height: 1.05;
   }
 
-  .section-footer {
-    margin-top: var(--space-xl);
+  .section-desc {
+    color: var(--text-muted);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    margin: 0;
+    padding-top: var(--space-xs);
   }
 
-  /* ── Card grid ───────────────────────────── */
+  /* ════════════════════════════════════════════
+     PRODUCTS — asymmetric grid
+     ════════════════════════════════════════════ */
 
-  .card-grid {
+  .products-layout {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: auto auto;
     gap: var(--space-lg);
+  }
+
+  .card-featured {
+    grid-row: 1 / 3;
   }
 
   .card-glass {
@@ -243,14 +494,13 @@ const latestPosts = (await getCollection('blog'))
     padding: var(--space-xl);
     display: flex;
     flex-direction: column;
-    transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition-slow);
+    transition: border-color var(--transition), box-shadow var(--transition);
     position: relative;
   }
 
   .card-glass:hover {
     border-color: var(--glass-border-strong);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--glass-border-strong);
-    transform: translateY(-2px);
   }
 
   .card-glass-outline {
@@ -282,18 +532,44 @@ const latestPosts = (await getCollection('blog'))
     letter-spacing: -0.02em;
   }
 
+  .card-title-lg {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+    margin: 0 0 var(--space-sm);
+    letter-spacing: -0.02em;
+  }
+
   .card-desc {
     font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.55;
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-lg);
     flex: 1;
+  }
+
+  .card-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-lg);
+  }
+
+  .feature-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    background: var(--glass-light);
+    border: 1px solid var(--glass-border);
+    padding: 0.2rem 0.6rem;
+    border-radius: var(--radius-full);
   }
 
   .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
   }
 
   .card-price {
@@ -303,18 +579,198 @@ const latestPosts = (await getCollection('blog'))
     color: var(--accent);
   }
 
-  /* ── Empty state ──────────────────────────── */
+  /* ════════════════════════════════════════════
+     BLOG — featured card + recent list
+     ════════════════════════════════════════════ */
 
-  .empty-state {
-    color: var(--text-muted);
-    padding: var(--space-xl) 0;
+  .blog-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl);
+    align-items: start;
   }
 
-  /* ── Responsive ───────────────────────────── */
+  .blog-featured {
+    padding: var(--space-2xl);
+    border-radius: var(--radius-md);
+    position: relative;
+  }
+
+  .blog-featured-tag {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--accent);
+    background: rgba(34, 211, 238, 0.10);
+    border: 1px solid rgba(34, 211, 238, 0.18);
+    padding: 0.2rem 0.7rem;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--space-md);
+  }
+
+  .blog-featured-date {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-faint);
+    margin-bottom: var(--space-md);
+  }
+
+  .blog-featured h2 {
+    margin: 0 0 var(--space-sm);
+    font-size: var(--text-2xl);
+    line-height: 1.2;
+  }
+
+  .blog-featured h2 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .blog-featured h2 a:hover { color: var(--accent); }
+
+  .blog-featured p {
+    color: var(--text-muted);
+    margin-bottom: var(--space-xl);
+    font-size: 0.95rem;
+  }
+
+  .blog-recent-label {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0 0 var(--space-lg);
+  }
+
+  .blog-recent .blog-list-item h3 {
+    font-size: var(--text-lg);
+    margin: 0;
+  }
+
+  .blog-recent .blog-list-item h3 a {
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .blog-recent .blog-list-item h3 a:hover {
+    color: var(--accent);
+  }
+
+  /* ════════════════════════════════════════════
+     NEWSLETTER — glass card
+     ════════════════════════════════════════════ */
+
+  .newsletter-glass {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    padding: var(--space-3xl);
+    text-align: center;
+  }
+
+  .newsletter-orb {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(100px);
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.08), transparent 70%);
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .newsletter-content {
+    position: relative;
+    z-index: 1;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .newsletter-title {
+    font-size: var(--text-3xl);
+    margin: 0 0 var(--space-md);
+  }
+
+  .newsletter-desc {
+    color: var(--text-muted);
+    font-size: var(--text-base);
+    margin-bottom: var(--space-xl);
+  }
+
+  .newsletter-form {
+    display: flex;
+    gap: var(--space-sm);
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .newsletter-form input[type="email"] {
+    flex: 1;
+    padding: 0.65rem 1rem;
+    background: var(--glass-light);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .newsletter-form input[type="email"]:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 16px var(--accent-glow);
+  }
+
+  /* ── Empty state ──────────────────────────── */
+  .empty-state {
+    color: var(--text-muted);
+    padding: var(--space-2xl) 0;
+  }
+
+  /* ════════════════════════════════════════════
+     RESPONSIVE
+     ════════════════════════════════════════════ */
 
   @media (max-width: 900px) {
-    .card-grid {
+    .hero-grid {
       grid-template-columns: 1fr;
+      gap: var(--space-2xl);
+    }
+
+    .hero-visual {
+      display: none; /* Hide node cluster on mobile */
+    }
+
+    .section-header-row {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+
+    .products-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .card-featured {
+      grid-row: auto;
+    }
+
+    .blog-layout {
+      grid-template-columns: 1fr;
+    }
+
+    .stats-inner {
+      gap: var(--space-xl);
+    }
+
+    .newsletter-form {
+      flex-direction: column;
     }
 
     .section-title {
@@ -322,25 +778,35 @@ const latestPosts = (await getCollection('blog'))
     }
   }
 
-  @media (max-width: 700px) {
+  @media (max-width: 600px) {
     .hero {
-      padding: var(--space-3xl) var(--space-md) var(--space-2xl);
-      min-height: auto;
+      padding: var(--space-3xl) var(--space-md);
     }
 
     .hero-headline {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
     }
 
     .section {
       padding: var(--space-3xl) var(--space-md);
     }
 
-    .hero-orb-main {
-      width: 300px;
-      height: 300px;
-      top: -100px;
-      right: -50px;
+    .newsletter-glass {
+      padding: var(--space-xl);
+    }
+
+    .stats-inner {
+      flex-wrap: wrap;
+      gap: var(--space-lg);
+    }
+
+    .stat-divider {
+      display: none;
+    }
+
+    .card-footer {
+      flex-direction: column;
+      align-items: flex-start;
     }
   }
 </style>
