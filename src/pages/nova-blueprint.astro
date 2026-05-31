@@ -1,0 +1,283 @@
+---
+import Base from '../layouts/Base.astro';
+---
+
+<Base title="Nova Blueprint — Build Your Own AI Influencer" description="The exact playbook behind @realnovatheai. Pipeline, scripts, pricing, distribution — everything we learned launching an AI content creator.">
+  <div class="blueprint-page">
+    
+    <section class="bp-hero">
+      <p class="bp-label">Digital Product</p>
+      <h1>Nova Blueprint</h1>
+      <p class="bp-tagline">I built an AI influencer for $24/month.<br />Here's the exact playbook.</p>
+      <p class="bp-desc">
+        The complete system behind @realnovatheai — the transparent AI content creator
+        that launched with zero audience and zero ad spend. Script templates, pipeline
+        setup, pricing comparisons, and real analytics from launch week.
+      </p>
+      <div class="bp-price-block">
+        <span class="bp-price">$19</span>
+        <span class="bp-price-note">One-time. Free updates for life.</span>
+      </div>
+      <a href="https://proddraft.gumroad.com/l/nova-blueprint" class="bp-cta">Get the Blueprint</a>
+    </section>
+
+    <section class="bp-contents">
+      <h2>What's inside</h2>
+
+      <div class="bp-module">
+        <h3>Pipeline & Stack</h3>
+        <ul>
+          <li>HeyGen setup — Avatar III vs IV, credit math, photo avatar training</li>
+          <li>Script system — 4-pillar framework, hook formulas, CTA patterns</li>
+          <li>Voice & TTS — exact setup, alternatives compared (Qwen3, Kokoro, Navy)</li>
+          <li>Video assembly — from image to final render, credit tracking</li>
+        </ul>
+      </div>
+
+      <div class="bp-module">
+        <h3>Content Strategy</h3>
+        <ul>
+          <li>Format guide — Shorts vs medium content, what works for each</li>
+          <li>Content calendar — daily shorts + weekly deep dives, pillar rotation</li>
+          <li>20 tested hooks — the difference between 9 views and 90</li>
+          <li>Hashtag playbook — what drives discovery vs wasted characters</li>
+        </ul>
+      </div>
+
+      <div class="bp-module">
+        <h3>Distribution</h3>
+        <ul>
+          <li>YouTube Shorts algorithm — real data from launch week</li>
+          <li>Crossposting workflow — one render, three platforms</li>
+          <li>What failed — Reddit auto-mod, paid ads at 0 followers, hashtag spam</li>
+          <li>The algorithm-first strategy that actually worked</li>
+        </ul>
+      </div>
+
+      <div class="bp-module">
+        <h3>Tools & Pricing</h3>
+        <ul>
+          <li>Video gen comparison — HeyGen vs lipsync.studio vs Kling vs Wan</li>
+          <li>TTS shootout — Navy API vs open source, free vs paid</li>
+          <li>The $24/month stack — everything you need, nothing you don't</li>
+          <li>Laptop setup guide — what to run locally, what to host</li>
+        </ul>
+      </div>
+
+      <div class="bp-module">
+        <h3>Real Numbers</h3>
+        <ul>
+          <li>Launch analytics — views, likes, traffic sources, subscriber growth</li>
+          <li>Cost per video — $0.19 on Avatar III, actual credit consumption</li>
+          <li>Script-to-view ratio — which content pillars perform</li>
+          <li>The compounding curve — what the first 72 hours actually look like</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="bp-who">
+      <h2>Who this is for</h2>
+      <p>
+        You're technically curious, budget-conscious, and want to build an AI content
+        creator without pretending it's human. You don't need to code &mdash; the pipeline
+        uses off-the-shelf tools. You need $24/month, a Gmail account, and the willingness
+        to post consistently.
+      </p>
+      <p class="bp-who-not">
+        <strong>Not for you if:</strong> you want a faceless TikTok empire overnight, a
+        "passive income" button, or a done-for-you agency.
+      </p>
+    </section>
+
+    <section class="bp-about">
+      <h2>About the author</h2>
+      <p>
+        Chad Martin built Nova, directs her team of AI agents, and documents the whole
+        thing at ProdDraft. He's not an AI guru. He's an engineer shipping in public.
+        Reach him at <a href="mailto:chadmartin@proddraft.com">chadmartin@proddraft.com</a>.
+      </p>
+    </section>
+
+    <section class="bp-bottom">
+      <div class="bp-price-block">
+        <span class="bp-price">$19</span>
+        <span class="bp-price-note">PDF + Markdown + video walkthrough</span>
+      </div>
+      <a href="https://proddraft.gumroad.com/l/nova-blueprint" class="bp-cta">Get the Blueprint</a>
+      <p class="bp-guarantee">Free updates for life as the pipeline evolves. No subscriptions, no upsells.</p>
+    </section>
+
+  </div>
+</Base>
+
+<style>
+  .blueprint-page {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  .bp-label {
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+
+  .bp-hero h1 {
+    font-size: 2.8rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.75rem;
+  }
+
+  .bp-tagline {
+    font-size: 1.25rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 1.25rem;
+  }
+
+  .bp-desc {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 560px;
+    line-height: 1.65;
+    margin-bottom: 2rem;
+  }
+
+  .bp-price-block {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .bp-price {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--text);
+  }
+
+  .bp-price-note {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+
+  .bp-cta {
+    display: inline-block;
+    padding: 0.75rem 2rem;
+    background: var(--accent);
+    color: #fff;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: background 0.15s;
+    margin-bottom: 3rem;
+  }
+
+  .bp-cta:hover {
+    background: var(--accent-hover);
+  }
+
+  .bp-contents {
+    border-top: 1px solid var(--border);
+    padding-top: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .bp-contents h2,
+  .bp-who h2,
+  .bp-about h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .bp-module {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .bp-module h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+  }
+
+  .bp-module ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .bp-module li {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    padding-left: 1.25rem;
+    position: relative;
+  }
+
+  .bp-module li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  .bp-who,
+  .bp-about {
+    margin-bottom: 3rem;
+  }
+
+  .bp-who p,
+  .bp-about p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 600px;
+  }
+
+  .bp-who-not {
+    margin-top: 1rem;
+    font-size: 0.95rem !important;
+    opacity: 0.8;
+  }
+
+  .bp-who-not strong {
+    color: var(--text);
+  }
+
+  .bp-about a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .bp-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 3rem;
+    text-align: center;
+  }
+
+  .bp-bottom .bp-price-block {
+    justify-content: center;
+  }
+
+  .bp-guarantee {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .bp-hero h1 {
+      font-size: 2rem;
+    }
+  }
+</style>
