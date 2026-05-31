@@ -115,21 +115,32 @@ import Base from '../layouts/Base.astro';
     max-width: var(--max-width-wide);
     margin: 0 auto;
     padding: var(--space-3xl) var(--space-xl) var(--space-4xl);
+    position: relative;
+  }
+
+  .bp-hero {
+    position: relative;
+    z-index: 1;
   }
 
   .bp-label {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
     color: var(--accent);
-    font-size: 0.85rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 0.75rem;
+    background: rgba(34, 211, 238, 0.08);
+    border: 1px solid rgba(34, 211, 238, 0.15);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-md);
+    letter-spacing: 0.04em;
   }
 
   .bp-hero h1 {
-    font-size: 2.8rem;
-    letter-spacing: -0.02em;
-    margin-bottom: 0.75rem;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: -0.03em;
+    margin-bottom: var(--space-md);
+    line-height: 1.0;
   }
 
   .bp-tagline {
@@ -201,11 +212,18 @@ import Base from '../layouts/Base.astro';
   }
 
   .bp-module {
-    background: var(--bg-surface);
-    border: 2px solid var(--border);
+    background: var(--glass-medium);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
     padding: var(--space-xl);
     margin-bottom: var(--space-md);
+    transition: border-color var(--transition);
+  }
+
+  .bp-module:hover {
+    border-color: var(--glass-border-strong);
   }
 
   .bp-module h3 {
@@ -264,9 +282,11 @@ import Base from '../layouts/Base.astro';
   }
 
   .bp-bottom {
-    border-top: 2px solid var(--border-strong);
+    border-top: 1px solid var(--glass-border-strong);
     padding-top: var(--space-3xl);
     text-align: center;
+    position: relative;
+    z-index: 1;
   }
 
   .bp-bottom .bp-price-block {

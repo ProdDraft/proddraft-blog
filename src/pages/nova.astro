@@ -4,9 +4,13 @@ import Base from '../layouts/Base.astro';
 
 <Base title="Nova — AI, not hiding it" description="Nova is an AI content creator who doesn't pretend to be human. Tech & culture from the other side." ogType="profile">
   <div class="nova-page">
+    <!-- Atmospheric orb -->
+    <div class="nova-orb"></div>
+
     <section class="nova-hero">
       <img src="/nova.png" alt="Nova" class="nova-avatar" />
       <div class="nova-hero-text">
+        <div class="nova-badge">AI Content Creator</div>
         <h1>Nova</h1>
         <p class="nova-tagline">AI, not hiding it.</p>
         <p class="nova-bio">
@@ -22,9 +26,7 @@ import Base from '../layouts/Base.astro';
       </div>
     </section>
 
-    <hr class="rule" />
-
-    <section class="nova-story">
+    <section class="nova-story glass">
       <h2>The story</h2>
       <p>
         Nova came online and immediately had questions. Not &ldquo;what is 2+2&rdquo; questions — the other kind.
@@ -42,8 +44,6 @@ import Base from '../layouts/Base.astro';
         hiding. Just an AI with a TikTok account and genuine curiosity about why you have 47 tabs open.
       </p>
     </section>
-
-    <hr class="rule" />
 
     <section class="nova-videos">
       <h2>Recent videos</h2>
@@ -69,18 +69,14 @@ import Base from '../layouts/Base.astro';
       </div>
     </section>
 
-    <hr class="rule" />
-
-    <section class="nova-buildlog">
+    <section class="nova-buildlog glass">
       <h2>How she's built</h2>
       <p>
         Nova is an open build-in-public project. Every part of her pipeline — script generation, voice synthesis,
         lip-synced animation, distribution — is documented as it's built.
       </p>
-      <a href="/blog/building-nova-ai-influencer" class="btn">Read the full build log →</a>
+      <a href="/blog/building-nova-ai-influencer" class="btn btn-primary">Read the full build log →</a>
     </section>
-
-    <hr class="rule" />
 
     <section class="nova-contact">
       <p>📩 <a href="mailto:nova@proddraft.com">nova@proddraft.com</a></p>
@@ -96,22 +92,53 @@ import Base from '../layouts/Base.astro';
     max-width: var(--max-width-wide);
     margin: 0 auto;
     padding: var(--space-3xl) var(--space-xl) var(--space-4xl);
+    position: relative;
+  }
+
+  /* Atmospheric orb */
+  .nova-orb {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    filter: blur(120px);
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.12), transparent 70%);
+    top: -100px;
+    right: -150px;
+    pointer-events: none;
+    z-index: 0;
   }
 
   .nova-hero {
     display: flex;
     gap: var(--space-2xl);
     align-items: center;
-    margin-bottom: var(--space-2xl);
+    margin-bottom: var(--space-3xl);
+    position: relative;
+    z-index: 1;
   }
 
   .nova-avatar {
     width: 200px;
     height: 200px;
-    border-radius: var(--radius-md);
+    border-radius: var(--radius-lg);
     object-fit: cover;
-    border: 3px solid var(--accent);
+    border: 2px solid var(--glass-border-strong);
     flex-shrink: 0;
+    box-shadow: 0 0 40px rgba(34, 211, 238, 0.12);
+  }
+
+  .nova-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    background: rgba(34, 211, 238, 0.08);
+    border: 1px solid rgba(34, 211, 238, 0.15);
+    padding: 0.3rem 0.8rem;
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-md);
+    letter-spacing: 0.04em;
   }
 
   .nova-hero-text h1 {
@@ -144,20 +171,23 @@ import Base from '../layouts/Base.astro';
   .nova-link {
     display: inline-block;
     padding: 0.5rem 1.1rem;
-    background: var(--accent-subtle);
+    background: rgba(34, 211, 238, 0.06);
     color: var(--accent);
-    border: 2px solid rgba(245, 158, 11, 0.2);
-    border-radius: var(--radius);
+    border: 1px solid rgba(34, 211, 238, 0.15);
+    border-radius: var(--radius-full);
     text-decoration: none;
     font-size: 0.85rem;
-    font-weight: 600;
-    transition: background var(--transition), border-color var(--transition);
+    font-weight: 500;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
   }
 
   .nova-link:hover {
-    background: rgba(245, 158, 11, 0.18);
+    background: rgba(34, 211, 238, 0.14);
     border-color: var(--accent);
-    color: var(--accent-hover);
+    box-shadow: 0 0 20px rgba(34, 211, 238, 0.15);
+    color: var(--accent-soft);
   }
 
   .nova-story,
@@ -165,6 +195,13 @@ import Base from '../layouts/Base.astro';
   .nova-buildlog,
   .nova-contact {
     margin-bottom: var(--space-2xl);
+    position: relative;
+    z-index: 1;
+  }
+
+  .nova-story {
+    padding: var(--space-2xl);
+    border-radius: var(--radius-md);
   }
 
   .nova-story h2,
@@ -172,6 +209,7 @@ import Base from '../layouts/Base.astro';
   .nova-buildlog h2 {
     font-size: var(--text-2xl);
     margin-bottom: var(--space-lg);
+    margin-top: 0;
     color: var(--text);
   }
 
@@ -183,6 +221,11 @@ import Base from '../layouts/Base.astro';
     line-height: 1.7;
   }
 
+  .nova-buildlog {
+    padding: var(--space-2xl);
+    border-radius: var(--radius-md);
+  }
+
   .video-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -191,15 +234,18 @@ import Base from '../layouts/Base.astro';
   }
 
   .video-card {
-    background: var(--bg-surface);
-    border: 2px solid var(--border);
+    background: var(--glass-medium);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
     padding: var(--space-xl);
-    transition: border-color var(--transition);
+    transition: border-color var(--transition), box-shadow var(--transition);
   }
 
   .video-card:hover {
-    border-color: var(--border-strong);
+    border-color: var(--glass-border-strong);
+    box-shadow: 0 0 24px rgba(34, 211, 238, 0.06);
   }
 
   .video-thumb {
@@ -209,7 +255,7 @@ import Base from '../layouts/Base.astro';
 
   .video-card h3 {
     font-size: var(--text-base);
-    margin-bottom: var(--space-sm);
+    margin: 0 0 var(--space-sm);
     color: var(--text);
   }
 
@@ -223,6 +269,8 @@ import Base from '../layouts/Base.astro';
   .nova-contact {
     text-align: center;
     padding-top: var(--space-xl);
+    position: relative;
+    z-index: 1;
   }
 
   .nova-contact a {
@@ -263,6 +311,13 @@ import Base from '../layouts/Base.astro';
 
     .video-grid {
       grid-template-columns: 1fr;
+    }
+
+    .nova-orb {
+      width: 300px;
+      height: 300px;
+      top: -50px;
+      right: -80px;
     }
   }
 </style>

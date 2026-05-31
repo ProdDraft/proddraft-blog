@@ -9,56 +9,79 @@ const latestPosts = (await getCollection('blog'))
 ---
 
 <Base>
-  <!-- HERO — massive, asymmetric, architectural -->
+  <!-- ── HERO — atmospheric with glowing orb ── -->
   <section class="hero">
+    <!-- Atmospheric orbs -->
+    <div class="hero-orb hero-orb-main"></div>
+    <div class="hero-orb hero-orb-secondary"></div>
+
     <div class="hero-inner">
-      <div class="hero-rule"></div>
+      <div class="hero-badge">Production-grade developer tooling</div>
       <h1 class="hero-headline">
-        Production-grade<br />developer tooling
+        Skip the boilerplate.<br />Ship the thing.
       </h1>
       <p class="hero-lede">
-        ProdDraft builds code foundations for engineers who want to skip the
-        boilerplate without inheriting someone's bad decisions. Plus a tech
-        blog worth reading.
+        ProdDraft builds code foundations that ship with CI, structured logging,
+        and Docker — not placeholder comments. Plus a tech blog that respects your
+        attention span.
       </p>
       <div class="hero-actions">
-        <a href="/products" class="btn">Browse products</a>
-        <a href="/blog" class="btn btn-secondary">Read the blog</a>
+        <a href="/products" class="btn btn-primary">Browse products</a>
+        <a href="/blog" class="btn">Read the blog</a>
+      </div>
+
+      <!-- Trust / feature pills -->
+      <div class="hero-pills">
+        <span class="pill">FastAPI</span>
+        <span class="pill">Docker</span>
+        <span class="pill">CI/CD</span>
+        <span class="pill">AI Research</span>
+        <span class="pill">Open Source</span>
+        <span class="pill">No Fluff</span>
       </div>
     </div>
   </section>
 
-  <!-- PRODUCTS — grid with visible structure -->
+  <!-- ── PRODUCTS — glass card grid ── -->
   <section class="section">
     <div class="section-inner">
-      <h2 class="section-label">Products</h2>
+      <div class="section-eyebrow">Products</div>
+      <h2 class="section-title">Starter kits, not starter headaches</h2>
       <div class="card-grid">
-        <article class="card">
+        <article class="card-glass">
+          <div class="card-badge">Popular</div>
           <h3 class="card-title">FastAPI Pro Starter</h3>
-          <p class="card-desc">A FastAPI scaffold that ships with CI, structured logging, and Docker — not excuses.</p>
-          <span class="card-price">$29</span>
-          <a href="https://proddraft.gumroad.com/l/remlbn" class="btn card-btn">Get it →</a>
+          <p class="card-desc">Async SQLAlchemy, Alembic, structlog, Docker Compose, GitHub Actions CI — the scaffold that ships with everything.</p>
+          <div class="card-footer">
+            <span class="card-price">$29</span>
+            <a href="https://proddraft.gumroad.com/l/remlbn" class="btn btn-primary card-btn">Get it →</a>
+          </div>
         </article>
-        <article class="card card-muted">
+        <article class="card-glass">
           <h3 class="card-title">Nova Blueprint</h3>
-          <p class="card-desc">The exact playbook behind @realnovatheai. Pipeline setup, script system, distribution.</p>
-          <span class="card-price">$19</span>
-          <a href="/nova-blueprint" class="btn card-btn">Learn more →</a>
+          <p class="card-desc">The exact playbook behind @realnovatheai — pipeline setup, script system, distribution strategy, real launch analytics.</p>
+          <div class="card-footer">
+            <span class="card-price">$19</span>
+            <a href="/nova-blueprint" class="btn btn-primary card-btn">Learn more →</a>
+          </div>
         </article>
-        <article class="card card-outline">
+        <article class="card-glass card-glass-outline">
           <h3 class="card-title">Coming next</h3>
-          <p class="card-desc">Next.js, Go services, Terraform modules — in the pipeline.</p>
-          <span class="card-price">&nbsp;</span>
-          <a href="/subscribe" class="btn btn-secondary card-btn">Get notified →</a>
+          <p class="card-desc">Next.js full-stack, Go microservices, Terraform modules — building in public. Subscribe for launch discounts.</p>
+          <div class="card-footer">
+            <span class="card-price">&nbsp;</span>
+            <a href="/subscribe" class="btn card-btn">Get notified →</a>
+          </div>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- BLOG — strong anchors -->
+  <!-- ── BLOG ── -->
   <section class="section">
     <div class="section-inner">
-      <h2 class="section-label">From the blog</h2>
+      <div class="section-eyebrow">Blog</div>
+      <h2 class="section-title">Writing worth your attention</h2>
       {latestPosts.length === 0 ? (
         <p class="empty-state">First post incoming. <a href="/subscribe">Subscribe</a> to get it.</p>
       ) : (
@@ -77,7 +100,7 @@ const latestPosts = (await getCollection('blog'))
         </ul>
       )}
       <div class="section-footer">
-        <a href="/blog" class="btn btn-secondary">All posts →</a>
+        <a href="/blog" class="btn">All posts →</a>
       </div>
     </div>
   </section>
@@ -87,36 +110,73 @@ const latestPosts = (await getCollection('blog'))
   /* ── Hero ────────────────────────────────── */
 
   .hero {
+    position: relative;
     padding: var(--space-4xl) var(--space-xl) var(--space-3xl);
-    border-bottom: 2px solid var(--border-strong);
+    overflow: hidden;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--glass-border);
+  }
+
+  /* Glowing orbs */
+  .hero-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .hero-orb-main {
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(34, 211, 238, 0.18), transparent 70%);
+    top: -200px;
+    right: -100px;
+  }
+
+  .hero-orb-secondary {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(168, 85, 247, 0.10), transparent 70%);
+    bottom: -150px;
+    left: -50px;
   }
 
   .hero-inner {
     max-width: var(--max-width-wide);
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
 
-  .hero-rule {
-    width: 80px;
-    height: 4px;
-    background: var(--accent);
-    margin-bottom: var(--space-2xl);
+  .hero-badge {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--accent);
+    background: rgba(34, 211, 238, 0.08);
+    border: 1px solid rgba(34, 211, 238, 0.15);
+    padding: 0.35rem 0.9rem;
+    border-radius: var(--radius-full);
+    margin-bottom: var(--space-xl);
+    letter-spacing: 0.04em;
   }
 
   .hero-headline {
-    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-size: clamp(2.8rem, 6vw, 5rem);
     font-weight: 700;
-    line-height: 0.95;
+    line-height: 1.0;
     letter-spacing: -0.04em;
-    margin-bottom: var(--space-xl);
-    max-width: 900px;
-    text-transform: uppercase;
+    margin-bottom: var(--space-lg);
+    max-width: 800px;
   }
 
   .hero-lede {
     font-size: var(--text-lg);
     color: var(--text-muted);
-    max-width: 580px;
+    max-width: 560px;
     line-height: 1.6;
     margin-bottom: var(--space-2xl);
   }
@@ -125,17 +185,19 @@ const latestPosts = (await getCollection('blog'))
     display: flex;
     gap: var(--space-md);
     flex-wrap: wrap;
+    margin-bottom: var(--space-3xl);
+  }
+
+  .hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
   }
 
   /* ── Sections ────────────────────────────── */
 
   .section {
-    padding: var(--space-3xl) var(--space-xl);
-    border-bottom: 2px solid var(--border);
-  }
-
-  .section:last-child {
-    border-bottom: none;
+    padding: var(--space-4xl) var(--space-xl);
   }
 
   .section-inner {
@@ -143,14 +205,21 @@ const latestPosts = (await getCollection('blog'))
     margin: 0 auto;
   }
 
-  .section-label {
+  .section-eyebrow {
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--text-faint);
+    font-size: 0.72rem;
+    color: var(--accent);
     text-transform: uppercase;
-    letter-spacing: 0.15em;
-    margin: 0 0 var(--space-xl);
+    letter-spacing: 0.12em;
+    margin-bottom: var(--space-sm);
+  }
+
+  .section-title {
+    font-size: var(--text-4xl);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0 0 var(--space-2xl);
+    line-height: 1.1;
   }
 
   .section-footer {
@@ -161,35 +230,53 @@ const latestPosts = (await getCollection('blog'))
 
   .card-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: var(--space-md);
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
   }
 
-  .card {
-    background: var(--bg-surface);
-    border: 2px solid var(--border);
+  .card-glass {
+    background: var(--glass-medium);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
     padding: var(--space-xl);
     display: flex;
     flex-direction: column;
-    transition: border-color var(--transition);
+    transition: border-color var(--transition), box-shadow var(--transition), transform var(--transition-slow);
+    position: relative;
   }
 
-  .card:hover {
-    border-color: var(--border-strong);
+  .card-glass:hover {
+    border-color: var(--glass-border-strong);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--glass-border-strong);
+    transform: translateY(-2px);
   }
 
-  .card-muted {
-    background: var(--bg);
-  }
-
-  .card-outline {
+  .card-glass-outline {
     background: transparent;
     border-style: dashed;
   }
 
+  .card-badge {
+    position: absolute;
+    top: -10px;
+    right: var(--space-lg);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    color: var(--accent);
+    background: rgba(34, 211, 238, 0.12);
+    border: 1px solid rgba(34, 211, 238, 0.2);
+    padding: 0.2rem 0.7rem;
+    border-radius: var(--radius-full);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
   .card-title {
-    font-size: var(--text-lg);
+    font-size: var(--text-xl);
     font-weight: 700;
     margin: 0 0 var(--space-sm);
     letter-spacing: -0.02em;
@@ -199,20 +286,21 @@ const latestPosts = (await getCollection('blog'))
     font-size: 0.9rem;
     color: var(--text-muted);
     line-height: 1.55;
-    margin-bottom: var(--space-lg);
+    margin-bottom: var(--space-xl);
     flex: 1;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .card-price {
     font-family: var(--font-mono);
-    font-size: var(--text-xl);
+    font-size: var(--text-2xl);
     font-weight: 700;
     color: var(--accent);
-    margin-bottom: var(--space-md);
-  }
-
-  .card-btn {
-    align-self: flex-start;
   }
 
   /* ── Empty state ──────────────────────────── */
@@ -224,32 +312,35 @@ const latestPosts = (await getCollection('blog'))
 
   /* ── Responsive ───────────────────────────── */
 
-  @media (max-width: 800px) {
+  @media (max-width: 900px) {
     .card-grid {
       grid-template-columns: 1fr;
     }
 
-    .hero {
-      padding: var(--space-3xl) var(--space-md) var(--space-2xl);
-    }
-
-    .section {
-      padding: var(--space-2xl) var(--space-md);
-    }
-
-    .section-inner,
-    .hero-inner {
-      padding: 0;
+    .section-title {
+      font-size: var(--text-3xl);
     }
   }
 
-  @media (max-width: 400px) {
-    .hero-headline {
-      font-size: 2.2rem;
+  @media (max-width: 700px) {
+    .hero {
+      padding: var(--space-3xl) var(--space-md) var(--space-2xl);
+      min-height: auto;
     }
 
-    .hero-lede {
-      font-size: var(--text-base);
+    .hero-headline {
+      font-size: 2.4rem;
+    }
+
+    .section {
+      padding: var(--space-3xl) var(--space-md);
+    }
+
+    .hero-orb-main {
+      width: 300px;
+      height: 300px;
+      top: -100px;
+      right: -50px;
     }
   }
 </style>
