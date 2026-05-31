@@ -5,68 +5,251 @@ import { getCollection } from 'astro:content';
 const latestPosts = (await getCollection('blog'))
   .filter(p => !p.data.draft)
   .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-  .slice(0, 1);
+  .slice(0, 2);
 ---
 
 <Base>
-  <section class="hero" style="margin-bottom: 3rem;">
-    <h1 style="font-size: 2.8rem; margin-bottom: 1rem;">
-      Production-grade<br />developer tooling
-    </h1>
-    <p style="font-size: 1.2rem; max-width: 560px;">
-      ProdDraft builds code foundations for engineers who want to skip the boilerplate
-      without inheriting someone's bad decisions. Plus a tech blog worth reading.
-    </p>
-    <div style="margin-top: 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
-      <a href="/products" class="btn">Browse products</a>
-      <a href="/blog" class="btn btn-secondary">Read the blog</a>
+  <!-- HERO — massive, asymmetric, architectural -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-rule"></div>
+      <h1 class="hero-headline">
+        Production-grade<br />developer tooling
+      </h1>
+      <p class="hero-lede">
+        ProdDraft builds code foundations for engineers who want to skip the
+        boilerplate without inheriting someone's bad decisions. Plus a tech
+        blog worth reading.
+      </p>
+      <div class="hero-actions">
+        <a href="/products" class="btn">Browse products</a>
+        <a href="/blog" class="btn btn-secondary">Read the blog</a>
+      </div>
     </div>
   </section>
 
-  <section style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 3rem;">
-    <div class="product-card">
-      <h3>FastAPI Pro Starter</h3>
-      <p>A FastAPI scaffold that ships with CI, structured logging, and Docker — not excuses.</p>
-      <div class="price">$29</div>
-      <a href="https://proddraft.gumroad.com/l/remlbn" class="btn" style="margin-top: 0.75rem;">Get it on Gumroad</a>
-    </div>
-    <div class="product-card">
-      <h3>More coming</h3>
-      <p>Next.js, Go services, Terraform modules — in the pipeline.</p>
-      <div class="price">&nbsp;</div>
-      <a href="/subscribe" class="btn btn-secondary" style="margin-top: 0.75rem;">Get notified</a>
+  <!-- PRODUCTS — grid with visible structure -->
+  <section class="section">
+    <div class="section-inner">
+      <h2 class="section-label">Products</h2>
+      <div class="card-grid">
+        <article class="card">
+          <h3 class="card-title">FastAPI Pro Starter</h3>
+          <p class="card-desc">A FastAPI scaffold that ships with CI, structured logging, and Docker — not excuses.</p>
+          <span class="card-price">$29</span>
+          <a href="https://proddraft.gumroad.com/l/remlbn" class="btn card-btn">Get it →</a>
+        </article>
+        <article class="card card-muted">
+          <h3 class="card-title">Nova Blueprint</h3>
+          <p class="card-desc">The exact playbook behind @realnovatheai. Pipeline setup, script system, distribution.</p>
+          <span class="card-price">$19</span>
+          <a href="/nova-blueprint" class="btn card-btn">Learn more →</a>
+        </article>
+        <article class="card card-outline">
+          <h3 class="card-title">Coming next</h3>
+          <p class="card-desc">Next.js, Go services, Terraform modules — in the pipeline.</p>
+          <span class="card-price">&nbsp;</span>
+          <a href="/subscribe" class="btn btn-secondary card-btn">Get notified →</a>
+        </article>
+      </div>
     </div>
   </section>
 
-  <section>
-    <h2>From the blog</h2>
-    {latestPosts.length === 0 ? (
-      <p style="color: var(--text-muted);">First post incoming. <a href="/subscribe">Subscribe</a> to get it.</p>
-    ) : (
-      <ul class="blog-list">
-        {latestPosts.map(post => (
-          <li class="blog-list-item">
-            <h2><a href={`/blog/${post.slug}`}>{post.data.title}</a></h2>
-            <div class="meta">
-              <time datetime={post.data.date.toISOString()}>
-                {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-              </time>
-            </div>
-            <p>{post.data.description}</p>
-          </li>
-        ))}
-      </ul>
-    )}
-    <div style="margin-top: 1.5rem;">
-      <a href="/blog" class="btn btn-secondary">All posts →</a>
+  <!-- BLOG — strong anchors -->
+  <section class="section">
+    <div class="section-inner">
+      <h2 class="section-label">From the blog</h2>
+      {latestPosts.length === 0 ? (
+        <p class="empty-state">First post incoming. <a href="/subscribe">Subscribe</a> to get it.</p>
+      ) : (
+        <ul class="blog-list">
+          {latestPosts.map(post => (
+            <li class="blog-list-item">
+              <h2><a href={`/blog/${post.slug}`}>{post.data.title}</a></h2>
+              <div class="meta">
+                <time datetime={post.data.date.toISOString()}>
+                  {post.data.date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                </time>
+              </div>
+              <p>{post.data.description}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+      <div class="section-footer">
+        <a href="/blog" class="btn btn-secondary">All posts →</a>
+      </div>
     </div>
   </section>
 </Base>
 
 <style>
-  @media (max-width: 600px) {
-    section[style*="grid-template-columns"] {
-      grid-template-columns: 1fr !important;
+  /* ── Hero ────────────────────────────────── */
+
+  .hero {
+    padding: var(--space-4xl) var(--space-xl) var(--space-3xl);
+    border-bottom: 2px solid var(--border-strong);
+  }
+
+  .hero-inner {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+  }
+
+  .hero-rule {
+    width: 80px;
+    height: 4px;
+    background: var(--accent);
+    margin-bottom: var(--space-2xl);
+  }
+
+  .hero-headline {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    margin-bottom: var(--space-xl);
+    max-width: 900px;
+    text-transform: uppercase;
+  }
+
+  .hero-lede {
+    font-size: var(--text-lg);
+    color: var(--text-muted);
+    max-width: 580px;
+    line-height: 1.6;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: var(--space-md);
+    flex-wrap: wrap;
+  }
+
+  /* ── Sections ────────────────────────────── */
+
+  .section {
+    padding: var(--space-3xl) var(--space-xl);
+    border-bottom: 2px solid var(--border);
+  }
+
+  .section:last-child {
+    border-bottom: none;
+  }
+
+  .section-inner {
+    max-width: var(--max-width-wide);
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin: 0 0 var(--space-xl);
+  }
+
+  .section-footer {
+    margin-top: var(--space-xl);
+  }
+
+  /* ── Card grid ───────────────────────────── */
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--space-md);
+  }
+
+  .card {
+    background: var(--bg-surface);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    transition: border-color var(--transition);
+  }
+
+  .card:hover {
+    border-color: var(--border-strong);
+  }
+
+  .card-muted {
+    background: var(--bg);
+  }
+
+  .card-outline {
+    background: transparent;
+    border-style: dashed;
+  }
+
+  .card-title {
+    font-size: var(--text-lg);
+    font-weight: 700;
+    margin: 0 0 var(--space-sm);
+    letter-spacing: -0.02em;
+  }
+
+  .card-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: var(--space-lg);
+    flex: 1;
+  }
+
+  .card-price {
+    font-family: var(--font-mono);
+    font-size: var(--text-xl);
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: var(--space-md);
+  }
+
+  .card-btn {
+    align-self: flex-start;
+  }
+
+  /* ── Empty state ──────────────────────────── */
+
+  .empty-state {
+    color: var(--text-muted);
+    padding: var(--space-xl) 0;
+  }
+
+  /* ── Responsive ───────────────────────────── */
+
+  @media (max-width: 800px) {
+    .card-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .hero {
+      padding: var(--space-3xl) var(--space-md) var(--space-2xl);
+    }
+
+    .section {
+      padding: var(--space-2xl) var(--space-md);
+    }
+
+    .section-inner,
+    .hero-inner {
+      padding: 0;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .hero-headline {
+      font-size: 2.2rem;
+    }
+
+    .hero-lede {
+      font-size: var(--text-base);
     }
   }
 </style>

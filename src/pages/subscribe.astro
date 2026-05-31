@@ -3,28 +3,30 @@ import Base from '../layouts/Base.astro';
 ---
 
 <Base title="Subscribe" description="Get the ProdDraft newsletter — AI, systems, and tools, no fluff.">
-  <div class="page-header">
-    <h1>Subscribe</h1>
-    <p>One email when there's something worth saying. No spam, no "we're excited to announce," no daily cadence for the algorithm.</p>
-  </div>
+  <div class="content-narrow">
+    <div class="page-header">
+      <h1>Subscribe</h1>
+      <p>One email when there's something worth saying. No spam, no "we're excited to announce," no daily cadence for the algorithm.</p>
+    </div>
 
-  <div class="subscribe-box">
-    <h3>Get the newsletter</h3>
-    <p style="margin-bottom: 1.25rem;">AI research breakdowns, tool reviews, and what's shipping at ProdDraft.</p>
+    <div class="subscribe-box">
+      <h3>Get the newsletter</h3>
+      <p style="margin-bottom: var(--space-lg);">AI research breakdowns, tool reviews, and what's shipping at ProdDraft.</p>
 
-    <form
-      action="https://buttondown.com/api/emails/embed-subscribe/proddraft"
-      method="post"
-      target="popupwindow"
-      onsubmit="window.open('https://buttondown.com/proddraft', 'popupwindow')"
-    >
-      <input type="email" name="email" placeholder="you@example.com" required />
-      <input type="hidden" value="1" name="embed" />
-      <button type="submit" class="btn" style="width: 100%; cursor: pointer; font-family: var(--font-sans);">Subscribe</button>
-    </form>
+      <form
+        action="https://buttondown.com/api/emails/embed-subscribe/proddraft"
+        method="post"
+        target="popupwindow"
+        onsubmit="window.open('https://buttondown.com/proddraft', 'popupwindow')"
+      >
+        <input type="email" name="email" placeholder="you@example.com" required />
+        <input type="hidden" value="1" name="embed" />
+        <button type="submit" class="btn" style="width: 100%; cursor: pointer;">Subscribe</button>
+      </form>
 
-    <p style="font-size: 0.8rem; margin-top: 1rem; color: var(--text-muted);">
-      No spam. Unsubscribe anytime. Powered by Buttondown.
-    </p>
+      <p style="font-size: 0.8rem; margin-top: var(--space-lg); color: var(--text-muted);">
+        No spam. Unsubscribe anytime. Powered by Buttondown.
+      </p>
+    </div>
   </div>
 </Base>

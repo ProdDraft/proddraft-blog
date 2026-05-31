@@ -22,6 +22,8 @@ import Base from '../layouts/Base.astro';
       </div>
     </section>
 
+    <hr class="rule" />
+
     <section class="nova-story">
       <h2>The story</h2>
       <p>
@@ -40,6 +42,8 @@ import Base from '../layouts/Base.astro';
         hiding. Just an AI with a TikTok account and genuine curiosity about why you have 47 tabs open.
       </p>
     </section>
+
+    <hr class="rule" />
 
     <section class="nova-videos">
       <h2>Recent videos</h2>
@@ -65,14 +69,18 @@ import Base from '../layouts/Base.astro';
       </div>
     </section>
 
+    <hr class="rule" />
+
     <section class="nova-buildlog">
       <h2>How she's built</h2>
       <p>
         Nova is an open build-in-public project. Every part of her pipeline — script generation, voice synthesis,
         lip-synced animation, distribution — is documented as it's built.
       </p>
-      <a href="/blog/building-nova-ai-influencer" class="nova-cta">Read the full build log →</a>
+      <a href="/blog/building-nova-ai-influencer" class="btn">Read the full build log →</a>
     </section>
+
+    <hr class="rule" />
 
     <section class="nova-contact">
       <p>📩 <a href="mailto:nova@proddraft.com">nova@proddraft.com</a></p>
@@ -85,148 +93,136 @@ import Base from '../layouts/Base.astro';
 
 <style>
   .nova-page {
-    max-width: var(--max-width);
+    max-width: var(--max-width-wide);
     margin: 0 auto;
-    padding: 3rem 1.5rem 4rem;
+    padding: var(--space-3xl) var(--space-xl) var(--space-4xl);
   }
 
   .nova-hero {
     display: flex;
-    gap: 2.5rem;
+    gap: var(--space-2xl);
     align-items: center;
-    margin-bottom: 4rem;
+    margin-bottom: var(--space-2xl);
   }
 
   .nova-avatar {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    border-radius: var(--radius-md);
     object-fit: cover;
-    border: 3px solid var(--border);
+    border: 3px solid var(--accent);
     flex-shrink: 0;
   }
 
   .nova-hero-text h1 {
-    font-size: 2.8rem;
-    margin-bottom: 0.25rem;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: var(--space-xs);
+    line-height: 1;
+    letter-spacing: -0.03em;
   }
 
   .nova-tagline {
-    font-size: 1.3rem;
+    font-size: var(--text-xl);
     color: var(--accent);
-    margin-bottom: 1rem;
-    font-weight: 500;
+    margin-bottom: var(--space-lg);
+    font-weight: 600;
   }
 
   .nova-bio {
     color: var(--text-muted);
-    font-size: 1.1rem;
+    font-size: var(--text-lg);
     line-height: 1.6;
-    margin-bottom: 1.5rem;
+    margin-bottom: var(--space-xl);
   }
 
   .nova-links {
     display: flex;
-    gap: 0.6rem;
+    gap: var(--space-sm);
     flex-wrap: wrap;
   }
 
   .nova-link {
     display: inline-block;
-    padding: 0.45rem 1rem;
+    padding: 0.5rem 1.1rem;
     background: var(--accent-subtle);
     color: var(--accent);
-    border: 1px solid rgba(99, 102, 241, 0.2);
+    border: 2px solid rgba(245, 158, 11, 0.2);
     border-radius: var(--radius);
     text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: background 0.15s, border-color 0.15s;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: background var(--transition), border-color var(--transition);
   }
 
   .nova-link:hover {
-    background: rgba(99, 102, 241, 0.2);
+    background: rgba(245, 158, 11, 0.18);
     border-color: var(--accent);
+    color: var(--accent-hover);
   }
 
   .nova-story,
   .nova-videos,
   .nova-buildlog,
   .nova-contact {
-    margin-bottom: 3rem;
+    margin-bottom: var(--space-2xl);
   }
 
   .nova-story h2,
   .nova-videos h2,
   .nova-buildlog h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
+    font-size: var(--text-2xl);
+    margin-bottom: var(--space-lg);
     color: var(--text);
   }
 
   .nova-story p,
   .nova-buildlog p {
     color: var(--text-muted);
-    margin-bottom: 0.75rem;
-    font-size: 1.05rem;
+    margin-bottom: var(--space-md);
+    font-size: var(--text-base);
     line-height: 1.7;
   }
 
   .video-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
-    margin-top: 1.5rem;
+    gap: var(--space-md);
+    margin-top: var(--space-xl);
   }
 
   .video-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.25rem;
+    background: var(--bg-surface);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    transition: border-color var(--transition);
+  }
+
+  .video-card:hover {
+    border-color: var(--border-strong);
   }
 
   .video-thumb {
     font-size: 2rem;
-    margin-bottom: 0.75rem;
+    margin-bottom: var(--space-md);
   }
 
   .video-card h3 {
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
+    font-size: var(--text-base);
+    margin-bottom: var(--space-sm);
     color: var(--text);
   }
 
   .video-card p {
     color: var(--text-muted);
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    line-height: 1.5;
-  }
-
-  .nova-cta {
-    display: inline-block;
-    padding: 0.65rem 1.5rem;
-    background: var(--accent);
-    color: #fff;
-    border-radius: var(--radius);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    margin-top: 0.5rem;
-    transition: background 0.15s;
-  }
-
-  .nova-cta:hover {
-    background: var(--accent-hover);
+    font-size: 0.88rem;
+    margin-bottom: var(--space-lg);
+    line-height: 1.55;
   }
 
   .nova-contact {
     text-align: center;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
+    padding-top: var(--space-xl);
   }
 
   .nova-contact a {
@@ -236,25 +232,29 @@ import Base from '../layouts/Base.astro';
 
   .nova-disclaimer {
     color: var(--text-muted);
-    font-size: 0.85rem;
-    margin-top: 0.75rem;
+    font-size: 0.82rem;
+    margin-top: var(--space-md);
     font-style: italic;
   }
 
   @media (max-width: 700px) {
+    .nova-page {
+      padding: var(--space-xl) var(--space-md) var(--space-3xl);
+    }
+
     .nova-hero {
       flex-direction: column;
       text-align: center;
-      gap: 1.5rem;
+      gap: var(--space-xl);
     }
 
     .nova-avatar {
-      width: 140px;
-      height: 140px;
+      width: 150px;
+      height: 150px;
     }
 
     .nova-hero-text h1 {
-      font-size: 2.2rem;
+      font-size: 2.5rem;
     }
 
     .nova-links {

@@ -112,9 +112,9 @@ import Base from '../layouts/Base.astro';
 
 <style>
   .blueprint-page {
-    max-width: var(--max-width);
+    max-width: var(--max-width-wide);
     margin: 0 auto;
-    padding: 3rem 1.5rem 4rem;
+    padding: var(--space-3xl) var(--space-xl) var(--space-4xl);
   }
 
   .bp-label {
@@ -169,23 +169,28 @@ import Base from '../layouts/Base.astro';
     display: inline-block;
     padding: 0.75rem 2rem;
     background: var(--accent);
-    color: #fff;
+    color: #0a0a0a;
+    border: 2px solid var(--accent);
     border-radius: var(--radius);
     text-decoration: none;
-    font-weight: 600;
-    font-size: 1.05rem;
-    transition: background 0.15s;
-    margin-bottom: 3rem;
+    font-weight: 700;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    transition: background var(--transition), border-color var(--transition);
+    margin-bottom: var(--space-3xl);
   }
 
   .bp-cta:hover {
     background: var(--accent-hover);
+    border-color: var(--accent-hover);
+    color: #0a0a0a;
   }
 
   .bp-contents {
-    border-top: 1px solid var(--border);
-    padding-top: 3rem;
-    margin-bottom: 3rem;
+    border-top: 2px solid var(--border-strong);
+    padding-top: var(--space-3xl);
+    margin-bottom: var(--space-3xl);
   }
 
   .bp-contents h2,
@@ -196,11 +201,11 @@ import Base from '../layouts/Base.astro';
   }
 
   .bp-module {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 1.5rem;
-    margin-bottom: 1rem;
+    background: var(--bg-surface);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    margin-bottom: var(--space-md);
   }
 
   .bp-module h3 {
@@ -259,8 +264,8 @@ import Base from '../layouts/Base.astro';
   }
 
   .bp-bottom {
-    border-top: 1px solid var(--border);
-    padding-top: 3rem;
+    border-top: 2px solid var(--border-strong);
+    padding-top: var(--space-3xl);
     text-align: center;
   }
 
